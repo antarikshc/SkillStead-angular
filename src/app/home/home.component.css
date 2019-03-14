@@ -1,0 +1,89 @@
+.root {
+  height: 100vh;
+  background-color: #1f0039;
+}
+
+#intro {
+  width: 100%;
+  position: relative;
+  padding: 100px 0 120px 0;
+  background: url("/assets/bg-waves.jpg") center bottom no-repeat;
+  background-size: cover;
+}
+
+#intro .intro-img {
+  width: 40%;
+  float: right;
+}
+
+#intro .intro-info {
+  width: 50%;
+  float: left;
+}
+
+#intro .intro-info #desc {
+  color: #fff;
+  font-size: 18px;
+  margin: 20px 0 20px 20px;
+}
+
+#intro .intro-info .btn-get-started,
+#intro .intro-info .btn-login {
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 10px 32px;
+  border-radius: 4px;
+  transition: 0.5s;
+  margin: 0 0 20px 20px;
+  color: #fff;
+}
+
+#intro .intro-info .btn-get-started {
+  background: rgb(221, 28, 131);
+  border: 2px solid rgb(221, 28, 131);
+  color: #fff;
+}
+
+#intro .intro-info .btn-get-started-hover {
+  background: none;
+  border-color: #fff;
+  color: #fff;
+}
+
+#intro .intro-info .btn-login {
+  border: 2px solid #fff;
+}
+
+#intro .intro-info .btn-login-hover {
+  background: rgb(221, 28, 131);
+  border-color: rgb(221, 28, 131);
+  color: #fff;
+}
+
+
+
+@media (max-width: 991px) {
+
+  #intro .intro-img {
+    width: 80%;
+    float: none;
+    margin: 0 auto auto auto;
+  }
+  
+  #intro .intro-info {
+    width: 80%;
+    float: none;
+    margin: auto;
+    align-content: center;
+  }
+
+}
+
+@media (max-width: 767px) {
+  
+  #intro .intro-info {
+    width: 100%;
+  }
+
+}

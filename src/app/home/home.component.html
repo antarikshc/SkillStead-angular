@@ -1,0 +1,32 @@
+<div class="root">
+  <section id="intro" class="clearfix">
+    <div class="container">
+
+      <div class="intro-info">
+        <app-logo id="logo"></app-logo>
+        <div id="desc">
+          Participate in a vibrant and engaging community<br>
+          and discover new interests along the way.<br>
+          Challenge friends and meet new people who<br>
+          share your interests.
+        </div>
+        <div>
+          <a class="btn-get-started"
+          [ngClass]="{'btn-get-started-hover': gethover}"
+          (mouseenter)="gethover = true"
+          (mouseleave)="gethover = false">GET STARTED</a>
+
+          <a class="btn-login"
+          [ngClass]="{'btn-login-hover': loginhover}"
+          (mouseenter)="loginhover = true"
+          (mouseleave)="loginhover = false">LOGIN</a>
+        </div>
+      </div>
+
+      <div class="intro-img">
+        <img id="vector" src="assets/home-vector.png" alt="" class="img-fluid">
+      </div>
+
+    </div>
+  </section>
+</div>
