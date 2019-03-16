@@ -1,0 +1,105 @@
+#logo {
+  width: 40%;
+  height: auto;
+  margin: 0 auto;
+  padding: 10px 20px 10px 0;
+  text-align: center;
+}
+
+.container {
+  color: white;
+  text-align: center;
+}
+
+.form-box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.18);
+  background-size: cover;
+}
+
+.form-top {
+  padding: 20px 30px 10px 30px;
+}
+
+mat-form-field {
+  width: 100%;
+  display: block;
+}
+
+.sign-up-btn {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 10px 32px;
+  border-radius: 4px;
+  transition: 0.5s;
+  background: rgb(221, 28, 131);
+  border: 2px solid rgb(221, 28, 131);
+  color: #fff;
+}
+
+.sign-up-btn-hover {
+  background: none;
+  border-color: #fff;
+  color: #fff;
+}
+
+
+p {
+  margin-top: 10px;
+}
+
+/*-- //main --*/
+
+@keyframes rippling {
+  50% {
+    border-left-color: #fff;
+  }
+
+  100% {
+    border-bottom-color: #fff;
+    border-left-color: #fff;
+  }
+}
+
+
+/* Medium devices */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .form-box {
+    width: 70%;
+  }
+  .form-top {
+    padding: 20px 20px 10px 20px;
+  }
+  #logo {
+    width: 60%;
+  }
+}
+
+/* Small devices */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .form-box {
+    width: 90%;
+  }
+  .form-top {
+    padding: 20px 20px 10px 20px;
+  }
+  #logo {
+    width: 80%;
+  }
+}
+
+/* Extra small */
+@media (max-width: 575.98px) {
+  .form-box {
+    width: 100%;
+  }
+  .form-top {
+    padding: 20px 15px 10px 15px;
+  }
+  #logo {
+    width: 80%;
+  }
+}
