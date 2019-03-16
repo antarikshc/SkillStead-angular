@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+$skillstead-primary: mat-palette($mat-purple, A400, A200, A700);
+$skillstead-accent: mat-palette($mat-deep-purple, 500, 400, 800);
+$skillstead-warn: mat-palette($mat-deep-orange);
+
+$skillstead-theme: mat-dark-theme(
+  $skillstead-primary,
+  $skillstead-accent,
+  $skillstead-warn
+);
+
+@include angular-material-theme($skillstead-theme);
