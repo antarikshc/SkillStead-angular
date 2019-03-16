@@ -14,12 +14,14 @@
           <a class="btn-get-started"
           [ngClass]="{'btn-get-started-hover': gethover}"
           (mouseenter)="gethover = true"
-          (mouseleave)="gethover = false">GET STARTED</a>
+          (mouseleave)="gethover = false"
+          routerLink="/signup">GET STARTED</a>
 
           <a class="btn-login"
           [ngClass]="{'btn-login-hover': loginhover}"
           (mouseenter)="loginhover = true"
-          (mouseleave)="loginhover = false">LOGIN</a>
+          (mouseleave)="loginhover = false"
+          routerLink="/login">LOGIN</a>
         </div>
       </div>
 
