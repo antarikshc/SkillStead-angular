@@ -5,7 +5,8 @@
 
 .waves {
   width: 100%;
+  height: 100vh;
   position: relative;
-  background: url("/assets/bg-waves.jpg") center no-repeat;
+  background: url("/assets/bg-waves.jpg") center repeat;
   background-size: cover;
 }
