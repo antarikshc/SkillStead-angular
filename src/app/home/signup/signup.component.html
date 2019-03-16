@@ -1,0 +1,36 @@
+<div class="container">
+  <div id="logo"><app-logo></app-logo></div>
+  <div class="form-box">
+    <div class="form-top">
+      <h4>CREATE ACCOUNT</h4>
+      <div>
+        <mat-form-field appearance="outline" size="14">
+          <mat-label>Name</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <button class="sign-up-btn"
+        [ngClass]="{'sign-up-btn-hover': gethover}"
+        (mouseenter)="gethover = true"
+        (mouseleave)="gethover = false">SIGN UP</button>
+
+      </div>
+      <p>Don't have an Account? <a href="#"> Login Now!</a></p>
+    </div>
+  </div>
+</div>

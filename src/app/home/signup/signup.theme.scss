@@ -1,0 +1,3 @@
+@import 'src/theme.scss';
+
+$primary: map-get($map: $skillstead-theme, $key: primary)
