@@ -1,0 +1,11 @@
+.back {
+  height: 100vh;
+  background-color: #1f0039;
+}
+
+.waves {
+  width: 100%;
+  position: relative;
+  background: url("/assets/bg-waves.jpg") center no-repeat;
+  background-size: cover;
+}
