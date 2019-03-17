@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,19 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
+  email: string;
+  password: string;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
+  onLogin(form: NgForm) {
+    this.authService.hitLogin(form.value.email, form.value.password)
+    .subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
+  }
 }

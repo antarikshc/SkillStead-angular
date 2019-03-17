@@ -1,24 +1,30 @@
 <div class="container">
-  <div id="logo"><app-logo></app-logo></div>
+  <div id="logo">
+    <app-logo></app-logo>
+  </div>
   <div class="form-box">
     <div class="form-top">
       <h4>WELCOME BACK</h4>
       <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput>
-        </mat-form-field>
+        <form (ngSubmit)="onLogin(form)" #form="ngForm">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput ngModel
+            name="email">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput ngModel
+            name="password">
+          </mat-form-field>
 
-        <button class="sign-up-btn"
-        [ngClass]="{'sign-up-btn-hover': gethover}"
-        (mouseenter)="gethover = true"
-        (mouseleave)="gethover = false">LOGIN</button>
-
+          <button class="sign-up-btn"
+          [ngClass]="{'sign-up-btn-hover': gethover}"
+          (mouseenter)="gethover = true"
+          (mouseleave)="gethover = false"
+          type="submit">LOGIN</button>
+        </form>
       </div>
       <p>New kid on the block? <a routerLink="/signup"> Register!</a></p>
     </div>
