@@ -1,6 +1,15 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl, FormGroupDirective, Validators, FormGroup } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material';
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-login',
@@ -12,19 +21,30 @@ import { NgForm } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  email: string;
-  password: string;
+  loginForm: FormGroup;
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  matcher = new MyErrorStateMatcher();
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.loginForm = new FormGroup({
+      email: this.emailFormControl,
+      password: this.passwordFormControl
+    });
   }
 
-  onLogin(form: NgForm) {
-    this.authService.hitLogin(form.value.email, form.value.password)
-    .subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+  onLogin() {
+    this.authService.hitLogin(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error)
+      );
   }
 }

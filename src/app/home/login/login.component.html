@@ -6,17 +6,25 @@
     <div class="form-top">
       <h4>WELCOME BACK</h4>
       <div>
-        <form (ngSubmit)="onLogin(form)" #form="ngForm">
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput ngModel
-            name="email">
+            <input matInput
+            type="email"
+            required
+            formControlName="email"
+            [errorStateMatcher]="matcher">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput ngModel
-            name="password">
+            <input matInput
+            type="password"
+            required
+            formControlName="password">
           </mat-form-field>
 
           <button class="sign-up-btn"

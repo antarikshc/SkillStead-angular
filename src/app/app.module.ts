@@ -10,8 +10,9 @@ import { LoginComponent } from './home/login/login.component';
 import { MaterialModule } from './material.module';
 import { SignUpComponent } from './home/signup/signup.component';
 import { AuthService } from './home/auth.service';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,10 +27,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
