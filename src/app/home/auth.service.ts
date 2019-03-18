@@ -13,4 +13,14 @@ export class AuthService {
         password
       });
   }
+
+  hitSignUp(name: string, email: string, password: string) {
+    return this.http.post(
+      'http://localhost:4040/users/signup',
+      {
+        name,
+        email,
+        password
+      });
+  }
 }

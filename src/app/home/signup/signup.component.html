@@ -1,34 +1,52 @@
 <div class="container">
-  <div id="logo"><app-logo></app-logo></div>
+  <div id="logo">
+    <app-logo></app-logo>
+  </div>
   <div class="form-box">
     <div class="form-top">
       <h4>CREATE ACCOUNT</h4>
       <div>
-        <mat-form-field appearance="outline" size="14">
-          <mat-label>Name</mat-label>
-          <input matInput>
-        </mat-form-field>
+        <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+          <mat-form-field appearance="outline" size="14">
+            <mat-label>Name</mat-label>
+            <input matInput
+            required 
+            formControlName="name">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" 
+            required 
+            formControlName="email" 
+            [errorStateMatcher]="emailMatcher">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput
+            required
+            formControlName="password">
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Confirm Password</mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput 
+            required
+            formControlName="confirmPassword"
+            [errorStateMatcher]="passwordMatcher">
+            <mat-error *ngIf="signUpForm.hasError('notSame')">
+              Passwords do not match
+            </mat-error>
+          </mat-form-field>
 
-        <button class="sign-up-btn"
-        [ngClass]="{'sign-up-btn-hover': gethover}"
-        (mouseenter)="gethover = true"
-        (mouseleave)="gethover = false">SIGN UP</button>
-
+          <button class="sign-up-btn" 
+          [ngClass]="{'sign-up-btn-hover': gethover}" 
+          (mouseenter)="gethover = true" (mouseleave)="gethover = false">SIGN UP</button>
+        </form>
       </div>
       <p>Don't have an Account? <a routerLink="/login"> Login Now!</a></p>
     </div>

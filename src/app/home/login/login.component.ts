@@ -41,10 +41,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.hitLogin(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe(
-        (response) => console.log(response),
-        (error) => console.log(error)
-      );
+    if (this.loginForm.valid) {
+      this.authService.hitLogin(this.loginForm.value.email, this.loginForm.value.password)
+        .subscribe(
+          (response) => console.log(response),
+          (error) => console.log(error)
+        );
+    }
   }
 }
