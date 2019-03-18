@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm, FormControl, FormGroupDirective, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class EmailErrorStateMatcher implements ErrorStateMatcher {
@@ -45,7 +46,11 @@ export class SignUpComponent implements OnInit {
   emailMatcher = new EmailErrorStateMatcher();
   passwordMatcher = new PasswordErrorStateMatcher();
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private navCtrl: NgxNavigationWithDataComponent
+    ) {
     this.signUpForm = this.formBuilder.group({
       name: this.nameFormControl,
       email: this.emailFormControl,
@@ -64,7 +69,9 @@ export class SignUpComponent implements OnInit {
         this.signUpForm.value.email,
         this.signUpForm.value.password)
         .subscribe(
-          (response) => console.log(response),
+          (response) => {
+            this.navCtrl.navigate('profile', { user_id: response.data.user_id });
+          },
           (error) => console.log(error)
         );
     }

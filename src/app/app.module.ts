@@ -13,6 +13,9 @@ import { AuthService } from './home/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/material';
+import { ProfileComponent } from './profile/profile.component';
+
+import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/materi
     LogoComponent,
     HomeComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/materi
   ],
   providers: [
     AuthService,
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    NgxNavigationWithDataComponent
   ],
   bootstrap: [AppComponent]
 })
