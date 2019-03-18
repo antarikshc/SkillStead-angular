@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       this.authService.hitLogin(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe(
           (response) => {
-            this.navCtrl.navigate('profile', {user_id: response.data.user_id});
+            this.navCtrl.navigate('profile', { response });
           },
           (error) => console.log(error)
         );

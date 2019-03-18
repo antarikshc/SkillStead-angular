@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   constructor(private navCtrl: NgxNavigationWithDataComponent) { }
 
   ngOnInit() {
-    console.log(this.navCtrl.data);
+    console.log(this.navCtrl.get('response'));
   }
 
 }

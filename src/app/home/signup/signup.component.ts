@@ -70,7 +70,7 @@ export class SignUpComponent implements OnInit {
         this.signUpForm.value.password)
         .subscribe(
           (response) => {
-            this.navCtrl.navigate('profile', { user_id: response.data.user_id });
+            this.navCtrl.navigate('profile', { response });
           },
           (error) => console.log(error)
         );
