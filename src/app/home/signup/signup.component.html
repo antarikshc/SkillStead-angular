@@ -27,14 +27,16 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput
+            <input type="password"
+            matInput
             required
             formControlName="password">
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Confirm Password</mat-label>
-            <input matInput 
+            <input type="password"
+            matInput 
             required
             formControlName="confirmPassword"
             [errorStateMatcher]="passwordMatcher">
