@@ -1,17 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  providers: [SocketService]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
-  constructor(private navCtrl: NgxNavigationWithDataComponent) { }
+  userId: string;
+
+  constructor(
+    private navCtrl: NgxNavigationWithDataComponent,
+    private socket: SocketService) { }
 
   ngOnInit() {
-    console.log(this.navCtrl.get('response'));
+    const response = this.navCtrl.get('response');
+    this.userId = response.data.user_id;
+  }
+
+  ngOnDestroy() {
+    this.socket.leaveMatch();
+  }
+
+  startMatch() {
+    this.socket.requestMatch({ userId: this.userId });
   }
 
 }
