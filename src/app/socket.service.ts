@@ -15,4 +15,19 @@ export class SocketService {
     this.socket.emit('userLeaveQueue');
   }
 
+  matchSpawned() {
+    const observable = new Observable<{ roomId: string }>(observer => {
+      this.socket.on('matchSpawned', (data) => {
+        observer.next(data);
+      });
+      return () => { this.socket.disconnect(); };
+    });
+
+    return observable;
+  }
+
+  joinRoom(data) {
+    this.socket.emit('joinRoom', data);
+  }
+
 }

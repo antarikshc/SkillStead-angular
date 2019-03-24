@@ -10,11 +10,17 @@ import { SocketService } from '../socket.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  // Properties
   userId: string;
 
   constructor(
     private navCtrl: NgxNavigationWithDataComponent,
-    private socket: SocketService) { }
+    private socket: SocketService) {
+
+    // Subscribe for matchSpawned listener
+    this.socket.matchSpawned()
+      .subscribe(data => this.onMatchSpawned(data));
+  }
 
   ngOnInit() {
     const response = this.navCtrl.get('response');
@@ -27,6 +33,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   startMatch() {
     this.socket.requestMatch({ userId: this.userId });
+  }
+
+  onMatchSpawned(data) {
+    // Pass the data as it is, server is expecting same format
+    this.socket.joinRoom(data);
   }
 
 }
