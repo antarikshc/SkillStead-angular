@@ -52,4 +52,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     console.log(data);
   }
 
+  logout() {
+    this.cookie.delete('userId');
+    this.navCtrl.navigate('');
+  }
+
 }
