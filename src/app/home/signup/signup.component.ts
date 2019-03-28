@@ -30,6 +30,8 @@ export class PasswordErrorStateMatcher implements ErrorStateMatcher {
   ]
 })
 export class SignUpComponent implements OnInit {
+
+  // Properties
   signUpForm: FormGroup;
   nameFormControl = ['', [
     Validators.required
@@ -72,6 +74,7 @@ export class SignUpComponent implements OnInit {
         this.signUpForm.value.password)
         .subscribe(
           (response: { data: { user_id: string} }) => {
+            // Save User ID in Cookie and navigate to Profile
             const userId = response.data.user_id;
             this.cookie.set('userId', userId);
             this.navCtrl.navigate('profile');

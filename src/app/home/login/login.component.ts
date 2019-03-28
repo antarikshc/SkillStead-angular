@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
       this.authService.hitLogin(this.loginForm.value.email, this.loginForm.value.password)
         .subscribe(
           (response: { data: { user_id: string} }) => {
+            // Save User ID in Cookie and navigate to Profile
             const userId = response.data.user_id;
             this.cookie.set('userId', userId);
             this.navCtrl.navigate('profile');

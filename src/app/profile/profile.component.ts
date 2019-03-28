@@ -28,6 +28,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Check for User ID in Cookie, navigate back to login otherwise
     if (this.cookie.check('userId')) {
       this.userId = this.cookie.get('userId');
     } else {
@@ -36,18 +37,25 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // Leave queue on Destroy
     this.socket.leaveMatch();
   }
 
+  /**
+   * On Click Start button
+   */
   startMatch() {
+    // This adds the Socket and User ID to match queue
     this.socket.requestMatch({ userId: this.userId });
   }
 
+  // Listener on  Match spawned request when an opponent is found
   onMatchSpawned(data) {
     // Pass the data as it is, server is expecting same format
     this.socket.joinRoom(data);
   }
 
+  // Listener on Match Initialization request, expect set of questions
   onMatchInit(data) {
     console.log(data);
   }

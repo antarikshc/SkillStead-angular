@@ -7,14 +7,17 @@ export class SocketService {
 
   private socket = io('http://localhost:4040');
 
+  // Emit User in Match Queue
   requestMatch(data) {
     this.socket.emit('userJoinQueue', data);
   }
 
+  // Emit User leaving queue
   leaveMatch() {
     this.socket.emit('userLeaveQueue');
   }
 
+  // Listener for Match Spawn requeust with Room credentials 
   matchSpawned() {
     const observable = new Observable<{ roomId: string }>(observer => {
       this.socket.on('matchSpawned', (data) => {
@@ -26,10 +29,12 @@ export class SocketService {
     return observable;
   }
 
+  // Join Room with ID receieved in Match Spawn
   joinRoom(data) {
     this.socket.emit('joinRoom', data);
   }
 
+  // Listener for Match Initialization with set of questions
   initMatch() {
     const observable = new Observable<{ roomId: string }>(observer => {
       this.socket.on('matchStarted', (data) => {
