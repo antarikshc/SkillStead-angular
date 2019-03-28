@@ -30,4 +30,15 @@ export class SocketService {
     this.socket.emit('joinRoom', data);
   }
 
+  initMatch() {
+    const observable = new Observable<{ roomId: string }>(observer => {
+      this.socket.on('matchStarted', (data) => {
+        observer.next(data);
+      });
+      return () => { this.socket.disconnect(); };
+    });
+
+    return observable;
+  }
+
 }

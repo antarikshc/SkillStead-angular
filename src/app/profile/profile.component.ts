@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     // Subscribe for matchSpawned listener
     this.socket.matchSpawned()
       .subscribe(data => this.onMatchSpawned(data));
+    this.socket.initMatch()
+      .subscribe(data => this.onMatchInit(data));
   }
 
   ngOnInit() {
@@ -38,6 +40,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onMatchSpawned(data) {
     // Pass the data as it is, server is expecting same format
     this.socket.joinRoom(data);
+  }
+
+  onMatchInit(data) {
+    console.log(data);
   }
 
 }
