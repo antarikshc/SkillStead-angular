@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { SocketService } from '../socket.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(
     private navCtrl: NgxNavigationWithDataComponent,
-    private socket: SocketService) {
+    private socket: SocketService,
+    private cookie: CookieService
+  ) {
 
     // Subscribe for matchSpawned listener
     this.socket.matchSpawned()
@@ -25,8 +28,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const response = this.navCtrl.get('response');
-    this.userId = response.data.user_id;
+    if (this.cookie.check('userId')) {
+      this.userId = this.cookie.get('userId');
+    } else {
+      this.navCtrl.navigate('login');
+    }
   }
 
   ngOnDestroy() {

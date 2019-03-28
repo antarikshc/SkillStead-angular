@@ -16,6 +16,7 @@ import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/materi
 import { ProfileComponent } from './profile/profile.component';
 
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
   providers: [
     AuthService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
-    NgxNavigationWithDataComponent
+    NgxNavigationWithDataComponent,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
