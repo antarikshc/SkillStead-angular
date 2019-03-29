@@ -18,6 +18,7 @@ export class MatchComponent implements OnInit {
   optionTwo: string;
   optionThree: string;
   optionFour: string;
+  playerNumber: string; // playerOne or playerTwo
 
   constructor(
     private navCtrl: NgxNavigationWithDataComponent
@@ -25,6 +26,7 @@ export class MatchComponent implements OnInit {
 
   ngOnInit() {
     this.questions = this.navCtrl.get('questions');
+    this.playerNumber = this.navCtrl.get('playerNumber');
     this.setQuestion(this.questionCount);
   }
 

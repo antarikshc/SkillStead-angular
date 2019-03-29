@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   // Properties
   userId: string;
+  playerNumber: string; // playerOne or playerTwo
 
   constructor(
     private navCtrl: NgxNavigationWithDataComponent,
@@ -50,14 +51,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   // Listener on  Match spawned request when an opponent is found
-  onMatchSpawned(data) {
+  onMatchSpawned(data: any) {
+    this.playerNumber = (data.player === 1) ? 'playerOne' : 'playerTwo';
     // Pass the data as it is, server is expecting same format
     this.socket.joinRoom(data);
   }
 
   // Listener on Match Initialization request, expect set of questions
-  onMatchInit(data) {
-    this.navCtrl.navigate('match', { questions: data });
+  onMatchInit(data: any) {
+    this.navCtrl.navigate('match', { questions: data, playerNumber: this.playerNumber });
   }
 
   logout() {
