@@ -17,6 +17,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { CookieService } from 'ngx-cookie-service';
+import { MatchComponent } from './match/match.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CookieService } from 'ngx-cookie-service';
     HomeComponent,
     LoginComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,

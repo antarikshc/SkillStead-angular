@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   // Listener on Match Initialization request, expect set of questions
   onMatchInit(data) {
-    console.log(data);
+    this.navCtrl.navigate('match', data);
   }
 
   logout() {
