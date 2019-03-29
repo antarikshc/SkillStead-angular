@@ -28,7 +28,11 @@ export class MatchComponent implements OnInit {
     this.setQuestion(this.questionCount);
   }
 
-  setQuestion(count) {
+  /**
+   * Update Question with given count
+   * @param count Question Count
+   */
+  setQuestion(count: number) {
     const currentQuestion = this.questions[count - 1];
     console.log(currentQuestion);
     this.questionString = currentQuestion.question;
@@ -36,6 +40,22 @@ export class MatchComponent implements OnInit {
     this.optionTwo = currentQuestion.options[1];
     this.optionThree = currentQuestion.options[2];
     this.optionFour = currentQuestion.options[3];
+  }
+
+  /**
+   * Click listeners for Options
+   */
+  answerOptionOne() {
+    console.log('Clicked Option 1');
+  }
+  answerOptionTwo() {
+    console.log('Clicked Option 2');
+  }
+  answerOptionThree() {
+    console.log('Clicked Option 3');
+  }
+  answerOptionFour() {
+    console.log('Clicked Option 4');
   }
 
 }
