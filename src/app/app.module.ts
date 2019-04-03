@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { CookieService } from 'ngx-cookie-service';
 import { MatchComponent } from './match/match.component';
+import { SocketService } from './socket.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatchComponent } from './match/match.component';
     AuthService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     NgxNavigationWithDataComponent,
-    CookieService
+    CookieService,
+    SocketService
   ],
   bootstrap: [AppComponent]
 })

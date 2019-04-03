@@ -6,8 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
-  providers: [SocketService]
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 

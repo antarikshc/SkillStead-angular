@@ -6,8 +6,7 @@ import { SocketService } from '../socket.service';
 @Component({
   selector: 'app-match',
   templateUrl: './match.component.html',
-  styleUrls: ['./match.component.css'],
-  providers: [SocketService]
+  styleUrls: ['./match.component.css']
 })
 export class MatchComponent implements OnInit {
 
