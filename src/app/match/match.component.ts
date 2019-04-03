@@ -36,7 +36,6 @@ export class MatchComponent implements OnInit {
    */
   setQuestion(count: number) {
     const currentQuestion = this.questions[count - 1];
-    console.log(currentQuestion);
     this.questionString = currentQuestion.question;
     this.optionOne = currentQuestion.options[0];
     this.optionTwo = currentQuestion.options[1];
@@ -44,20 +43,9 @@ export class MatchComponent implements OnInit {
     this.optionFour = currentQuestion.options[3];
   }
 
-  /**
-   * Click listeners for Options
-   */
-  answerOptionOne() {
-    console.log('Clicked Option 1');
+  // Click listeners for Options
+  answerOption(option: number) {
+    console.log(`Clicked Option ${option}`);
   }
-  answerOptionTwo() {
-    console.log('Clicked Option 2');
-  }
-  answerOptionThree() {
-    console.log('Clicked Option 3');
-  }
-  answerOptionFour() {
-    console.log('Clicked Option 4');
-  }
-
 }
+
