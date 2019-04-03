@@ -46,4 +46,8 @@ export class SocketService {
     return observable;
   }
 
+  sendResponse(data) {
+    this.socket.emit('recordResponse', data);
+  }
+
 }

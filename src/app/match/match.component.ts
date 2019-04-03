@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { Question } from '../models/question.model';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-match',
   templateUrl: './match.component.html',
-  styleUrls: ['./match.component.css']
+  styleUrls: ['./match.component.css'],
+  providers: [SocketService]
 })
 export class MatchComponent implements OnInit {
 
   // Properties
+  matchId: string;
   questions: Array<Question>;
   questionCount = 1;
   questionString: string;
@@ -18,13 +21,15 @@ export class MatchComponent implements OnInit {
   optionTwo: string;
   optionThree: string;
   optionFour: string;
-  playerNumber: string; // playerOne or playerTwo
+  playerNumber: number;
 
   constructor(
-    private navCtrl: NgxNavigationWithDataComponent
+    private navCtrl: NgxNavigationWithDataComponent,
+    private socket: SocketService
   ) { }
 
   ngOnInit() {
+    this.matchId = this.navCtrl.get('matchId');
     this.questions = this.navCtrl.get('questions');
     this.playerNumber = this.navCtrl.get('playerNumber');
     this.setQuestion(this.questionCount);
@@ -46,6 +51,24 @@ export class MatchComponent implements OnInit {
   // Click listeners for Options
   answerOption(option: number) {
     console.log(`Clicked Option ${option}`);
+
+    let isCorrect = false;
+    if (this.questions[this.questionCount].answer === option) {
+      isCorrect = true;
+    }
+
+    this.socket.sendResponse({
+      match: {
+        id: this.matchId,
+        count: this.questionCount,
+        player: this.playerNumber
+      },
+      response: {
+        answer: option,
+        time: 0,
+        isCorrect
+      }
+    });
   }
 }
 
