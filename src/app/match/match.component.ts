@@ -22,8 +22,8 @@ export class MatchComponent implements OnInit {
   optionThree: string;
   optionFour: string;
   playerNumber: number;
-  playerOneScore: string;
-  playerTwoScore: string;
+  playerOneScore = '0';
+  playerTwoScore = '0';
   // Timer
   timeLeft = 30;
   interval;
