@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { Question } from '../models/question.model';
 import { SocketService } from '../socket.service';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-match',
@@ -23,6 +24,9 @@ export class MatchComponent implements OnInit {
   playerNumber: number;
   playerOneScore: string;
   playerTwoScore: string;
+  // Timer
+  timeLeft = 30;
+  interval;
 
   constructor(
     private navCtrl: NgxNavigationWithDataComponent,
@@ -50,10 +54,13 @@ export class MatchComponent implements OnInit {
     this.optionTwo = currentQuestion.options[1];
     this.optionThree = currentQuestion.options[2];
     this.optionFour = currentQuestion.options[3];
+    this.timeLeft = 30;
+    this.startTimer();
   }
 
   // Click listeners for Options
   answerOption(option: number) {
+    this.pauseTimer();
 
     let isCorrect = false;
     if (this.questions[this.questionCount].answer + 1 === option) {
@@ -69,12 +76,13 @@ export class MatchComponent implements OnInit {
       },
       response: {
         answer: option,
-        time: 0,
+        time: 30 - this.timeLeft,
         isCorrect
       }
     });
   }
 
+  // Switch to next question
   queueNextQuestion(data: any) {
     console.log(data);
     this.playerOneScore = data.playerOne;
@@ -85,6 +93,20 @@ export class MatchComponent implements OnInit {
     } else {
       console.log('End of Quiz');
     }
+  }
+
+  /**
+   * Helper methods for timer
+   */
+  startTimer() {
+    this.interval = setInterval(() => {
+      if (this.timeLeft > 0) {
+        this.timeLeft--;
+      }
+    }, 1000);
+  }
+  pauseTimer() {
+    clearInterval(this.interval);
   }
 }
 
