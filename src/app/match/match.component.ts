@@ -13,7 +13,7 @@ export class MatchComponent implements OnInit {
   // Properties
   matchId: string;
   questions: Array<Question>;
-  questionCount = 1;
+  questionCount = 0;
   questionString: string;
   // I know it's stupid, but don't have time
   optionOne: string;
@@ -25,7 +25,10 @@ export class MatchComponent implements OnInit {
   constructor(
     private navCtrl: NgxNavigationWithDataComponent,
     private socket: SocketService
-  ) { }
+  ) {
+    this.socket.nextQuestion()
+      .subscribe(data => this.queueNextQuestion(data));
+  }
 
   ngOnInit() {
     this.matchId = this.navCtrl.get('matchId');
@@ -39,7 +42,7 @@ export class MatchComponent implements OnInit {
    * @param count Question Count
    */
   setQuestion(count: number) {
-    const currentQuestion = this.questions[count - 1];
+    const currentQuestion = this.questions[count];
     this.questionString = currentQuestion.question;
     this.optionOne = currentQuestion.options[0];
     this.optionTwo = currentQuestion.options[1];
@@ -49,17 +52,17 @@ export class MatchComponent implements OnInit {
 
   // Click listeners for Options
   answerOption(option: number) {
-    console.log(`Clicked Option ${option}`);
 
     let isCorrect = false;
-    if (this.questions[this.questionCount].answer === option) {
+    if (this.questions[this.questionCount].answer + 1 === option) {
+      console.log('Correct answer brah..')
       isCorrect = true;
     }
 
     this.socket.sendResponse({
       match: {
         id: this.matchId,
-        count: this.questionCount - 1,
+        count: this.questionCount,
         player: this.playerNumber
       },
       response: {
@@ -68,6 +71,16 @@ export class MatchComponent implements OnInit {
         isCorrect
       }
     });
+  }
+
+  queueNextQuestion(data: any) {
+    console.log(data);
+    this.questionCount += 1;
+    if (this.questionCount < 10) {
+      this.setQuestion(this.questionCount);
+    } else {
+      console.log('End of Quiz');
+    }
   }
 }
 
