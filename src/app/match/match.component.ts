@@ -59,7 +59,7 @@ export class MatchComponent implements OnInit {
     this.socket.sendResponse({
       match: {
         id: this.matchId,
-        count: this.questionCount,
+        count: this.questionCount - 1,
         player: this.playerNumber
       },
       response: {
