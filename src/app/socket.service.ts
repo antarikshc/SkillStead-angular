@@ -17,7 +17,7 @@ export class SocketService {
     this.socket.emit('userLeaveQueue');
   }
 
-  // Listener for Match Spawn requeust with Room credentials 
+  // Listener for Match Spawn requeust with Room credentials
   matchSpawned() {
     const observable = new Observable<{ roomId: string }>(observer => {
       this.socket.on('matchSpawned', (data: any) => {

@@ -21,6 +21,8 @@ export class MatchComponent implements OnInit {
   optionThree: string;
   optionFour: string;
   playerNumber: number;
+  playerOneScore: string;
+  playerTwoScore: string;
 
   constructor(
     private navCtrl: NgxNavigationWithDataComponent,
@@ -55,7 +57,7 @@ export class MatchComponent implements OnInit {
 
     let isCorrect = false;
     if (this.questions[this.questionCount].answer + 1 === option) {
-      console.log('Correct answer brah..')
+      console.log('Correct answer brah..');
       isCorrect = true;
     }
 
@@ -75,6 +77,8 @@ export class MatchComponent implements OnInit {
 
   queueNextQuestion(data: any) {
     console.log(data);
+    this.playerOneScore = data.playerOne;
+    this.playerTwoScore = data.playerTwo;
     this.questionCount += 1;
     if (this.questionCount < 10) {
       this.setQuestion(this.questionCount);

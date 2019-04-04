@@ -3,6 +3,11 @@ h3 {
   text-align: center;
 }
 
+h5 {
+  color: white;
+  text-align: center;
+}
+
 label.btn {
     padding: 10px 40px;
     white-space: normal;
