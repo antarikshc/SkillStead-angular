@@ -23,6 +23,8 @@ export class MatchComponent implements OnInit {
   playerNumber: number;
   playerOneScore = '0';
   playerTwoScore = '0';
+  playerOneWon: string;
+  playerTwoWon: string;
   isAnswered = false;
   // Timer
   timeLeft = 30;
@@ -98,6 +100,11 @@ export class MatchComponent implements OnInit {
       this.setQuestion(this.questionCount);
     } else {
       console.log('End of Quiz');
+      if (this.playerOneScore > this.playerTwoScore) {
+        this.playerOneWon = 'Winner';
+      } else {
+        this.playerTwoWon = 'Winner';
+      }
     }
   }
 
