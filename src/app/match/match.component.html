@@ -5,12 +5,14 @@
 
         <h5>{{timeLeft}}s</h5><br> 
 
-      <label class="element-animation1 btn btn-lg btn-primary btn-block" (click)="answerOption(1)">
+      <label class="element-animation1 btn btn-lg btn-primary btn-block"
+      (click)="isAnswered? null : answerOption(1)">
         <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
         {{ optionOne }}
       </label>
 
-      <label class="element-animation2 btn btn-lg btn-primary btn-block" (click)="answerOption(2)">
+      <label class="element-animation2 btn btn-lg btn-primary btn-block"
+      (click)="isAnswered? null : answerOption(2)">
         <span class="btn-label"><i class="glyphicon glyphicon-chevron-right"></i></span>
         {{ optionTwo }}
       </label>

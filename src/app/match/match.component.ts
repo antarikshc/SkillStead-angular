@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { Question } from '../models/question.model';
 import { SocketService } from '../socket.service';
-import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-match',
@@ -24,6 +23,7 @@ export class MatchComponent implements OnInit {
   playerNumber: number;
   playerOneScore = '0';
   playerTwoScore = '0';
+  isAnswered = false;
   // Timer
   timeLeft = 30;
   interval;
@@ -54,32 +54,38 @@ export class MatchComponent implements OnInit {
     this.optionTwo = currentQuestion.options[1];
     this.optionThree = currentQuestion.options[2];
     this.optionFour = currentQuestion.options[3];
+    this.isAnswered = false;
     this.timeLeft = 30;
     this.startTimer();
   }
 
   // Click listeners for Options
   answerOption(option: number) {
-    this.pauseTimer();
+    if (!this.isAnswered) {
 
-    let isCorrect = false;
-    if (this.questions[this.questionCount].answer + 1 === option) {
-      console.log('Correct answer brah..');
-      isCorrect = true;
-    }
+      this.pauseTimer();
+      this.isAnswered = true;
 
-    this.socket.sendResponse({
-      match: {
-        id: this.matchId,
-        count: this.questionCount,
-        player: this.playerNumber
-      },
-      response: {
-        answer: option,
-        time: 30 - this.timeLeft,
-        isCorrect
+      let isCorrect = false;
+      if (this.questions[this.questionCount].answer + 1 === option) {
+        console.log('Correct answer brah..');
+        isCorrect = true;
       }
-    });
+
+      this.socket.sendResponse({
+        match: {
+          id: this.matchId,
+          count: this.questionCount,
+          player: this.playerNumber
+        },
+        response: {
+          answer: option,
+          time: 30 - this.timeLeft,
+          isCorrect
+        }
+      });
+
+    }
   }
 
   // Switch to next question
