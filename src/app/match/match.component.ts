@@ -93,8 +93,13 @@ export class MatchComponent implements OnInit {
   // Switch to next question
   queueNextQuestion(data: any) {
     console.log(data);
-    this.playerOneScore = data.playerOne;
-    this.playerTwoScore = data.playerTwo;
+    if (this.playerNumber === 1) {
+      this.playerOneScore = data.playerOne;
+      this.playerTwoScore = data.playerTwo;
+    } else {
+      this.playerOneScore = data.playerTwo;
+      this.playerTwoScore = data.playerOne;
+    }
     this.questionCount += 1;
     if (this.questionCount < 10) {
       this.setQuestion(this.questionCount);
