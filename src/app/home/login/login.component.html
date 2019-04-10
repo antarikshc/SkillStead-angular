@@ -27,6 +27,8 @@
             formControlName="password">
           </mat-form-field>
 
+          <p>{{ errorMessage }}</p>
+
           <button class="sign-up-btn"
           [ngClass]="{'sign-up-btn-hover': gethover}"
           (mouseenter)="gethover = true"

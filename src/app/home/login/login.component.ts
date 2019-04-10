@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     Validators.required
   ]);
   matcher = new MyErrorStateMatcher();
+  errorMessage: string;
 
 
   constructor(
@@ -63,7 +64,10 @@ export class LoginComponent implements OnInit {
             this.cookie.set('userId', userId);
             this.navCtrl.navigate('profile');
           },
-          (error) => console.log(error)
+          (error) => {
+            this.errorMessage = 'Login failed! Please try again';
+            console.log(error);
+          }
         );
     }
   }
